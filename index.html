@@ -1,137 +1,600 @@
 <!DOCTYPE html>
-<html>
-<title>Joseph Shneyderman</title>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="Console.png">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 <style>
-body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
-.w3-row-padding img {margin-bottom: 12px}
-/* Set the width of the sidebar to 120px */
-.w3-sidebar {width: 120px;background: #222;}
-/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
-#main {margin-left: 120px}
-/* Remove margins from "page content" on small screens */
-@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+    
+    a {
+        color: #001C55;
+    }
+    
+    body {
+        background-color: #ffffff;
+        font-family: "Open Sans", sans-serif;
+    }
+    
+    .navbar {
+        padding-bottom: 10px;
+        overflow: hidden;
+        background-color: #ffffff;
+    }
+    
+    .main-nav {
+        list-style-type: none;
+        display: none;
+    }
+    
+    .nav-links,
+    .logo {
+        text-decoration: none;
+        color: rgb(0, 28, 85, 1.0);
+        font-family: "Open Sans", sans-serif;
+        text-align: center;
+        -webkit-font-smoothing: antialiased;
+        text-decoration: none;
+        font-size: 4.0vw;
+        font-weight: 500;
+        font-stretch: 130%;
+        line-height: normal;
+        display: inline-block;
+        padding: 38px
+    }
+    
+    .nav-links:hover {
+        font-weight: 800;
+    }
+    
+    .main-nav li {
+        text-align: center;
+        margin-top: -15px;
+    }
+    
+    .logo {
+        display: inline-block;
+        padding: 17px 10px;
+        font-size: 22px;
+    }
+    
+    .navbar-toggle {
+        position: absolute;
+        top: 30px;
+        right: 45px;
+        cursor: pointer;
+        color: #001C55;
+        font-size: 24px;
+    }
+    
+    .active {
+        display: block;
+    }
+    
+    #current {
+        display: block;
+        font-weight: 650;
+    }
+    
+    .image {
+        width: 100%;
+        text-align: center;
+        margin-top: -50px;
+    }
+    
+    .subimage p {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .bio {
+        width: 100%;
+        float: left;
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+    
+    @media screen and (min-width: 1500px) {
+        .nav-links {
+            font-size: 0.95vw;
+        }
+        .image {
+            width: 40%;
+            float: left;
+            margin-top: 0px;
+        }
+        .bio {
+            width: 60%;
+            float: left;
+            padding-right: 120px;
+            padding-left: 40px;
+        }
+        .subimage {
+            float: right;
+        }
+    }
+    
+    @media screen and (min-width: 800px) {
+        .image {
+            width: 40%;
+            float: left;
+            margin-top: 0px;
+        }
+        .bio {
+            width: 60%;
+            float: left;
+            padding-right: 120px;
+            padding-left: 40px;
+        }
+        .subimage {
+            float: right;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 0;
+            height: 70px;
+            align-items: center;
+        }
+        .main-nav {
+            display: flex;
+            margin-right: 30px;
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+        .main-nav li {
+            margin: 0;
+        }
+        .nav-links {
+            margin-left: 0px;
+            margin-right: 0px;
+            padding: 17px 18px;
+            font-size: 1.2vw;
+        }
+        .logo {
+            margin-top: 0;
+        }
+        .navbar-toggle {
+            display: none;
+        }
+        .nav-links:hover {
+            background-color: #51e29c
+        }
+        .navbar {
+            position: fixed;
+            right: 10px;
+            width: 95%;
+        }
+    }
+    
+    h1 {
+        color: #001C55;
+    }
+    
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 85px;
+        background-color: #333333;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        font-family: "Open Sans", sans-serif;
+        font-size: 0.8em;
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 2;
+        bottom: 100%;
+        left: 100%;
+        margin-left: -64px;
+        margin-bottom: 3px;
+    }
+    
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+    }
+    
+    .modal {
+        position: fixed;
+        /* Stay in place */
+        z-index: 3;
+        /* Sit on top */
+        padding-top: 20px;
+        /* Location of the box */
+        padding-bottom: 20px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+    }
+    
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        width: 80%;
+    }
+    
+    .close {
+        color: #a6b8dd;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        margin-top: -15px;
+    }
+    
+    .close:hover,
+    .close:focus {
+        color: #001C55;
+        text-decoration: none;
+        cursor: pointer;
+    }
 </style>
-<body class="w3-black">
 
-<!-- Icon Bar (Sidebar - hidden on small screens) -->
-<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
-  <!-- Avatar image in top left corner -->
-  <img src="what.jpg" style="width:50%">
-  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">
-    <i class="fa fa-home w3-xxlarge"></i>
-    <p>HOME</p>
-  </a>
-  <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-user w3-xxlarge"></i>
-    <p>ABOUT</p>
-  </a>
-  <a href="#photos" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-eye w3-xxlarge"></i>
-    <p>PHOTOS</p>
-  <a href="#about2" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-user w3-xxlarge"></i>
-    <p>DEPTH</p>
-  </a>
+<head>
+    <title>Joseph Shneyderman</title>
+</head>
 
-  </a>
-  <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-envelope w3-xxlarge"></i>
-    <p>CONTACT</p>
-  </a>
-</nav>
-
-<!-- Navbar on small screens (Hidden on medium and large screens) -->
-<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
-  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
-    <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
-    <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
-    <a href="#photos" class="w3-bar-item w3-button" style="width:25% !important">PHOTOS</a>
-    <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
-  </div>
-</div>
-
-<!-- Page Content -->
-<div class="w3-padding-large" id="main">
-  <!-- Header/Home -->
-  <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
-    <h1 class="w3-jumbo"><span class="w3-hide-small">I'm</span> Joseph Shneyderman.</h1>
-    <p>Avid hiker and delivery boy.</p>
-    <img src="lol.PNG" alt="boy" class="w3-image" width="992" height="1108">
-  </header>
-
-  <!-- About Section -->
-  <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
-    <h2 class="w3-text-light-grey">About me</h2>
-    <hr style="width:200px" class="w3-opacity">
-    <p>I am from a town north of Boston and will be studying Mechanical Engineering at Northeastern University in the fall of 2020. In my free time I enjoy hiking, hanging out with friends, working out, listening to music and watching Netflix. I ran cross country and indoor/outdoor track, was in the marching band and concert band. I work as a delivery boy at a local pizzeria and I have visited 27 national parks. I love Childish Gambino and my favorite TV show is That 70's Show. 
-    </p>
-  
-    
+<body>
+    <div style="z-index: 1; position:fixed; background-color: #ffffff; width:100%; height:85px;">
+        <div style="margin-top: 10px; margin-left: 30px; margin-right: 25px;">
+            <nav class="navbar">
+                <span class="navbar-toggle" id="js-navbar-toggle">
+            <i class="fa fa-bars"></i>
+        </span>
+                <a href="#" class="logo">Joseph Shneyderman</a>
+                <ul class="main-nav" id="js-menu">
+                    <li>
+                        <a href="#" class="nav-links" id="current">Home</a>
+                    </li>
+                    <li>
+                        <a href="#Education" class="nav-links">Education</a>
+                    </li>
+                    <li>
+                        <a href="#Skills" class="nav-links">Skills</a>
+                    </li>
+                    <li>
+                        <a href="#Projects" class="nav-links">Projects</a>
+                    </li>
+                    <li>
+                        <a href="#Experience" class="nav-links">Experience</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/yshneyderman/yshneyderman.github.io/raw/master/Joseph%20Shneyderman%20Resume.pdf" class="nav-links" style="background-color: #94ffcc;"><i class="fa fa-download"></i>&nbsp;&nbsp;Resume</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
-  </div>
-  
-  <!-- Portfolio Section -->
-  <div class="w3-padding-64 w3-content" id="photos">
-    <h2 class="w3-text-light-grey">My Photos</h2>
-    <hr style="width:200px" class="w3-opacity">
+    <div style="text-align:center">
+        <div style="display:inline-block; padding-top: 100px; margin-right: 40px; margin-left: 40px;">
+            <div class="image" style="display:inline-block;">
+                <div class="subimage">
+                    <img src="profilewhiteorigcolorcorrected.png" width="300px" style="margin-left: auto; margin-right: auto; display: block; margin-top:100px;">
+                    <p style="text-align:center;padding-top:20px; font-size:0.95em;color:#001C55; padding-right: 70px; padding-left: 70px; max-width:500px">Hiking at Glacier National Park, MT 2019</p>
+                </div>
+            </div>
+            <div class="bio" style="display:inline-block; margin-top:20px; font-size:1.2em;color:#001C55; max-width:900px; text-align: left;">
+                <h1 style="font-size:2.3em; text-align: center; min-width: 330px">Joseph Shneyderman</h1><br>
+                <p style="margin-bottom:12px; min-width: 450px">I'm a student at Northeastern University pursuing my Bachelors Degree in Mechanical Engineering</p>
+                <p style="margin-bottom:12px; min-width: 450px">As a student and engineer I am very passionate about learning and love using technology to solve problems around me.</p>
+                <p style="margin-bottom:12px; min-width: 450px">I am seeking internships and co-ops to help gain some more useful skills and contribute to the world.</p>
+                <p style="margin-bottom:12px; min-width: 450px">In my free time I like hiking the national parks (Zion, Glacier, and Gaudalupe are the best), running, watching standup comedy, listening to music.</p>
+                <div style="text-align:center; margin-top:25px;">
+                </div>
 
-    <!-- Grid for photos -->
-    <div class="w3-row-padding" style="margin:0 -16px">
-      <div class="w3-half">
-        <img src="JEMBA.jpg" style="width:100%">
-        <img src="famvaca.jpg" style="width:100%">
-        <img src="promChris.jpg" style="width:100%">
-      </div>
-
-      <div class="w3-half">
-        <img src="promChandler.jpg" style="width:100%">
-        <img src="RUN.jpg" style="width:100%">
-        <img src="raj.jpg" style="width:100%">
-      </div>
-    <!-- End photo grid -->
+            </div>
+        </div>
     </div>
-    
-  <!-- End Portfolio Section -->
-  </div>
- <!-- About 2 Section -->
- <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about2">
-    <h2 class="w3-text-light-grey">More In Depth Me</h2>
-    <hr style="width:200px" class="w3-opacity">
-    <p>I always have some sort of project going on, whether it be swapping the motor of a 2009 Audi A3, creating my own cornhole set, teaching myself trumpet and other assorted things. I also love to go hiking and have gone on many road trips across the country to visit some of the many national parks. My 3 favorite parks are Zion National Park, Glacier National Park and Guadalupe National Park. My goal is to visit every national park in the US. I am a big fan of stand up comedy and have seen most stand up specials on Netflix, my favorite special would have to be Gabriel Iglasias: Sorry for what I said when I was hungry. I tend to listen to music as much as I can, some of my favorite artists are Childish Gambino, Kendrick Lamar, Travis Scott and Kid Cudi. However, I will listen to almost anything. I love to run however, I have battled injuries and so in track and field I have bounced between running distance and throwing discus. So when working out, I am down to either run or lift. When I am not doing any of that or even when I am, you can find me hanging with my friends. I love going out and eating with my friends, specifically going to a local wings place called Sauce, if you are ever in the Andover area, I would highly suggest trying their food.    
-   </p>
-  </div>
-</div>
-</div>
-
-   
-</div>
-</div>
-  <!-- Contact Section -->
-  <div class="w3-padding-64 w3-content w3-text-grey" id="contact">
-    <h2 class="w3-text-light-grey">Contact  Me</h2>
-    <hr style="width:200px" class="w3-opacity">
-
-    <div class="w3-section">
-      <p><i class="fa fa-instagram fa-fw w3-text-white w3-xxlarge w3-margin-right"></i><a href="https://www.instagram.com/jshney/" >@Jshney</a></p>
-      <p><i class="fa fa-snapchat fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i><a href="https://www.snapchat.com/add/jshney" >@Jshney</a></p>
-      <p><i class="fa fa-spotify fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i><a href="https://open.spotify.com/user/jshney?si=V_2jBwCAQcSjiIp5leRRqA" > Joseph Shneyderman</a></p>
     </div>
-  <!-- End Contact Section -->
-  </div>
-  
-    <!-- Footer -->
-  <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
-    
-  <!-- End footer -->
-  </footer>
+    </div>
+    </div>
+    </div>
 
-<!-- END PAGE CONTENT -->
-</div>
+    <div id="Contact" style="width:100%; text-align:center; float:left; padding-top:75px; margin-top:-30px; margin-bottom:0px;min-width:600px">
+        <h1 style="font-size:2.3em; text-align: center">Contact Me</h1><br>
+        <p style="font-size:1.1em; margin-bottom:15px;">Feel free to send a message on LinkedIn...<br> or send me an email at shneyderman.j@northeastern.edu.</p>
+        <div class="tooltip">
+            <div style="z-index: 0;text-align:center; display: inline-block;position:relative; width:50px; height: 50px; padding:10px;cursor: pointer; font-size: 50px;margin-right:10px;" onmouseover="shadow('linkedinicon')" onmouseout="unshadow('linkedinicon')" onclick="window.open('https://www.linkedin.com/in/jshneyderman/','_blank')">
+                <i id="linkedinicon" class="fa fa-linkedin-square" style="color:#001C55; width:50px; border-radius:12px;"> </i>
+            </div>
+            <span class="tooltiptext" style="margin-bottom:-15px">LinkedIn</span>
+        </div>
+        <div class="tooltip">
+            <div style="z-index: 0;text-align:center; display: inline-block;position:relative; width:50px; height: 50px; padding:10px;cursor: pointer; font-size: 50px;margin-right:10px;" onmouseover="shadow('emailicon')" onmouseout="unshadow('emailicon')" onclick="window.open('mailto:shneyderman.j@northeastern.edu')">
+                <i id="emailicon" class="fa fa-envelope" style="color:#001C55;cursor:pointer; width:60px; border-radius: 8px;"></i>
+            </div>
+            <span class="tooltiptext" style="margin-bottom:-15px;">Email</span>
+        </div>
 
+    </div>
+
+    <div id="Education" style="width:100%; text-align:center; float:left; padding-top:75px; margin-top:-30px; margin-bottom:-70px;min-width:600px">
+        <h1 style="font-size:2.3em; text-align: center">Education</h1><br>
+        <div id="UMass" style="max-width:1400px;z-index: 0; text-align:left; display: inline-block;position:relative; width:90%; height: 200px; margin-left:10px; margin-right:10px;background-color:#51e29c;padding: 30px;min-width:600px">
+            <div style="float:right;position:absolute;top:30px;right:40px">
+                <p style="font-size:1.1em;color:#001C55;font-weight:600">GPA: 3.823</p>
+            </div>
+            <img src="https://img.icons8.com/windows/64/000000/university.png" width="30px" style="float:left" />
+            <p style="width:90%; float:left;font-size:1.4em;margin-left:4px;color:#001C55;font-weight:600">Northeastern University</p><br>
+            <p style="width:90%;float:left;margin-top: 10px; font-size:1.0em;color:#001C55;font-weight:600">Bachelor of Science</p><br>
+            <p style="width:90%;float:left;margin-top: 10px; font-size:1.0em;color:#001C55;font-weight:600">Mechanical Engineering</p><br>
+            <p style="width:90%;float:left;margin-top: 10px; font-size:1.0em;color:#001C55;font-weight:100">Activities and Societies: Northeastern Electric Racing - Drivetrain, AerospaceNU - Propulsion</p><br>
+        </div>
+        <div id="UMassClick" style="max-width:1400px;min-width:600px;z-index: 0; text-align:left; display: inline-block;position:relative; width:90%; height: 45px; margin-left:10px; margin-right:10px;background-color:#94ffcc; margin-bottom:0px; padding-bottom:15px; padding-left: 20px; padding-right:20px; padding-top: 10px; cursor: pointer;"
+            onclick="expand('bachelors')" onmouseover="shadow('UMassClick')" onmouseout="unshadow('UMassClick')">
+            <p style="width:50%; float:left; font-size:1.0em;margin-left:4px;color:#001C55;font-weight:600">Coursework</p>
+            <div id="caretbachelors"><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+        </div>
+        <div id="Courses" style="max-width:1400px;display: inline-block; z-index: 0; text-align:center; position:relative; width:90%; margin-left:10px; margin-right:10px;padding-bottom:15px; padding-left: 20px; padding-right:20px; padding-top: 10px; margin-bottom:20px;">
+            <div class="coursebachelors" style="display:none; z-index: 0; text-align:left; margin-bottom: 10px; position:relative; width:100%; background-color:#b8ffdd; padding-bottom:15px; padding-left: 20px; padding-right:20px; padding-top: 10px; cursor: pointer;">
+                <p style="font-size:0.9em;color:#001C55;font-weight:600">Engineering (Completed):
+                    <p style="font-size:0.9em;color:#001C55;font-weight:400">
+                        Cornerstone for Engineering, General Chemistry, Calculus 3, Physics 1-2, Differential Equations/Linear Algebra and Engineering 2
+            </div>
+            <div class="coursebachelors" style="display:none; z-index: 0; text-align:left; margin-bottom: 10px; position:relative; width:100%; background-color:#b8ffdd; padding-bottom:15px; padding-left: 20px; padding-right:20px; padding-top: 10px; cursor: pointer;">
+                <p style="font-size:0.9em;color:#001C55;font-weight:600">Other (Completed):
+                    <p style="font-size:0.9em;color:#001C55;font-weight:400">
+                        English/Writing, Biology
+            </div>
+            <div class="coursebachelors" style="z-index: 0; text-align:left; display: none ;position:relative; width:100%; background-color:#b8ffdd; padding-bottom:15px; padding-left: 20px; padding-right:20px; padding-top: 10px; cursor: pointer;">
+                <p style="font-size:0.9em;color:#001C55;font-weight:600">In Progress:
+                    <p style="font-size:0.9em;color:#001C55;font-weight:400">
+                        Thermodynamics, Statics, Material Sciences
+                    </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="Skills" style="width:100%; text-align:center; float:left; padding-top:75px;">
+        <h1 style="font-size:2.3em; text-align: center">Skills</h1><br>
+        <div style="display:inline-block; max-width:1400px;">
+            <div style="text-align:left; float:left; width:50%; padding-right: 20px; padding-left:60px;">
+                <p style="font-size:1.2em;color:#001C55;font-weight:600">Technical</p>
+                <div style="padding-left:30px; padding-top:5px;font-size:1.0em;color:#001C55;">
+                    <p>
+                        <ul style="padding-bottom:10px;"><b>Languages:</b> C/C++, Python
+                        </ul>
+                    </p>
+                    <p>
+                        <ul style="padding-bottom:10px;"><b>Skills:</b> Arduino, Robotics, CAD, Microsoft Office Suite, SolidWorks, MATLAB, 3D-Print experience, Linux</ul>
+                    </p>
+                </div>
+            </div>
+            <div style="text-align:left; float:right; width:50%; padding-right: 60px; padding-left:20px;">
+                <p style="font-size:1.2em;color:#001C55;font-weight:600">Interpersonal</p>
+                <div style="padding-left:30px; padding-top:5px;font-size:1.0em;color:#001C55;">
+                    <p>
+                        <p>
+                            <ul style="padding-bottom:10px;">Leadership, eager learner, team worker</ul>
+                        </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Projects" style="text-align:center; float:left; margin-right:40px; margin-left:40px; padding-top:75px;">
+        <h1 style="font-size:2.3em; text-align: center">Projects</h1><br>
+        <h1 style="font-size:1.1em; text-align: center; font-weight:400; margin-top:-10px; margin-bottom:10px">Click on a project for more information</h1><br>
+
+        <div id="AerospaceNU" style="z-index: 0;text-align:left; display: inline-block;position:relative; width:515px; height: 215px; margin-left:8px; margin-right:8px; background-color:#51e29c;padding:20px;  margin-bottom: 20px; padding: 30px; cursor: pointer;"
+            onmouseover="shadow('AerospaceNU')" onmouseout="unshadow('AerospaceNU')" onclick="modal('AerospaceNUModal')">
+
+            <p style="float:left;font-size:1.4em;margin-left:4px;color:#001C55;font-weight:600">AerospaceNU</p><br>
+            <p style="float:left;margin-top: 10px; font-size:1.0em;color:#001C55;font-weight:400">Learned about rocketry and designed a liquid fueled rocket engine, using kerosene and liquid oxygen as fuel/oxidizer. In the process of building the engine.</p><br>
+            <br>
+
+        </div>
+
+        <div id="AerospaceNUModal" class="modal">
+            <div class="modal-content" style="height:745px; text-align:center; width:950px">
+                <span class="close" id="AerospaceNUModalClose">&times;</span>
+                <p style="font-size:1.4em;color:#001C55;font-weight:600">AerospaceNU</p>
+                <div style="margin-bottom:30px;float:left; width:50%; text-align: center; padding:10px; margin-top: 80px; background-color:#94ffcc;">
+                    <img src="Images/AerospaceNU.png" width="400px" style="margin-top:20px;border-radius:0px; border-style:solid; border-color:#001C55;">
+                    <p style="margin-top: 10px; font-size:0.9em;color:#001C55;font-weight:400; text-align: center; margin-bottom:20px;">Photo of the rocket.</p>
+                </div>
+                <div style="float:right; width:50%; text-align:left; padding:10px; margin-top:45px; padding-left:20px">
+                    <p style="float:left;margin-top: 10px; font-size:0.9em;color:#001C55;font-weight:400; text-align: left">
+                        Text...
+                        <br>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="NortheasternElectricRacing" style="z-index: 0;text-align:left; display: inline-block;position:relative; width:515px; height: 215px; margin-left:8px; margin-right:8px; background-color:#51e29c;padding:20px;  margin-bottom: 20px; padding: 30px; cursor: pointer;"
+            onmouseover="shadow('NortheasternElectricRacing')" onmouseout="unshadow('NortheasternElectricRacing')" onclick="modal('NortheasternElectricRacingModal')">
+
+            <p style="float:left;font-size:1.4em;margin-left:4px;color:#001C55;font-weight:600">Northeastern Electric Racing</p><br>
+            <p style="float:left;margin-top: 10px; font-size:1.0em;color:#001C55;font-weight:400">Helped design test cases for the differential to make sure that the material used on the casing would not degrade in use.</p><br>
+            <br>
+
+        </div>
+
+        <div id="NortheasternElectricRacingModal" class="modal">
+            <div class="modal-content" style="height:535px; text-align:center; width:950px">
+                <span class="close" id="NortheasternElectricRacingModalClose">&times;</span>
+                <p style="font-size:1.4em;color:#001C55;font-weight:600">CSNortheasternElectricRacing Project</p>
+                <div style="margin-bottom:30px;float:left; width:50%; text-align: center; padding:10px; margin-top: 80px; background-color:#94ffcc;">
+                    <img src="Images/NortheasternElectricRacing.png" width="400px" style="margin-top:20px;border-radius:0px; border-style:solid; border-color:#001C55;">
+                    <p style="margin-top: 10px; font-size:0.9em;color:#001C55;font-weight:400; text-align: center; margin-bottom:20px;">Photo of the racecar.</p>
+                </div>
+                <div style="float:right; width:50%; text-align:left; padding:10px; margin-top:45px; padding-left:20px">
+                    <p style="float:left;margin-top: 10px; font-size:0.9em;color:#001C55;font-weight:400; text-align: left">
+                        Text...
+                        <br><br>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="AudiMotorReplacement" style="z-index: 0;text-align:left; display: inline-block;position:relative; width:515px; height: 215px; margin-left:8px; margin-right:8px; background-color:#51e29c;padding:20px;  margin-bottom: 20px; padding: 30px; cursor: pointer;"
+            onmouseover="shadow('AudiMotorReplacement')" onmouseout="unshadow('AudiMotorReplacement')" onclick="modal('AudiMotorReplacementModal')">
+
+            <p style="float:left;font-size:1.4em;margin-left:4px;color:#001C55;font-weight:600">Audi Motor Replacement</p><br>
+            <p style="float:left;margin-top: 10px; font-size:1.0em;color:#001C55;font-weight:400">Fixed an Audi from a non-running state to street legal car. Replaced motor and other failing components of the vehicle. Worked with a friend to repair the vehicle with self-learned knowledge without the assistance of a professional mechanic.</p><br>
+            <br>
+
+        </div>
+
+        <div id="AudiMotorReplacementModal" class="modal">
+            <div class="modal-content" style="height:535px; text-align:center; width:950px">
+                <span class="close" id="AudiMotorReplacementModalClose">&times;</span>
+                <p style="font-size:1.4em;color:#001C55;font-weight:600">Audi Motor Replacement</p>
+                <div style="margin-bottom:30px;float:left; width:50%; text-align: center; padding:10px; margin-top: 80px; background-color:#94ffcc;">
+                    <img src="Images/AudiMotorReplacement.png" width="400px" style="margin-top:20px;border-radius:0px; border-style:solid; border-color:#001C55;">
+                    <p style="margin-top: 10px; font-size:0.9em;color:#001C55;font-weight:400; text-align: center; margin-bottom:20px;">Photo working on the engine.</p>
+                </div>
+                <div style="float:right; width:50%; text-align:left; padding:10px; margin-top:45px; padding-left:20px">
+                    <p style="float:left;margin-top: 10px; font-size:0.9em;color:#001C55;font-weight:400; text-align: left">
+                        Text<br><br>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div id="Robot" style="z-index: 0;text-align:left; display: inline-block;position:relative; width:515px; height: 215px; margin-left:8px; margin-right:8px;background-color:#51e29c;padding:20px;  margin-bottom: 20px; padding: 30px; cursor: pointer;" onmouseover="shadow('Robot')"
+            onmouseout="unshadow('Robot')" onclick="modal('RobotModal')">
+
+            <p style="float:left;font-size:1.4em;margin-left:4px;color:#001C55;font-weight:600">Robot</p><br>
+            <p style="float:left;margin-top: 10px; font-size:1.0em;color:#001C55;font-weight:400">Designed and built a robot using Arduino to take an order, follow a line and deliver food to customers, essentially a robotic waiter for restaurants.</p><br>
+            <br>
+
+        </div>
+
+        <div id="RobotModal" class="modal">
+            <div class="modal-content" style="height:1010px; text-align:center; width:950px">
+                <span class="close" id="RobotModalClose">&times;</span>
+                <p style="font-size:1.4em;color:#001C55;font-weight:600">Robot</p>
+                <div style="float:left; width:50%; text-align: center; padding:10px; margin-top: 60px; background-color:#94ffcc;">
+                    <img src="Images/589.png" width="400px" style="margin-top:50px; border-radius:0px; border-style:solid; border-color:#001C55;display:inline-block">
+                    <p style="margin-top: 10px; font-size:0.9em;color:#001C55;font-weight:400; text-align: center; margin-bottom: 50px">Photo of the Robot.</p>
+                </div>
+                <div style="float:right; width:50%; text-align:left; padding:10px; margin-top:10px;">
+                    <p style="padding-left:20px;float:left;margin-top: 10px; font-size:0.9em;color:#001C55;font-weight:400; text-align: left">
+                        Text...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="Robot2" style="z-index: 0;text-align:left; display: inline-block;position:relative; width:515px; height: 215px; margin-left:8px; margin-right:8px;background-color:#51e29c;padding:20px;  margin-bottom: 20px; padding: 30px; cursor: pointer;" onmouseover="shadow('Robot2')"
+            onmouseout="unshadow('Robot2')" onclick="modal('Robot2Modal')">
+
+            <p style="float:left;font-size:1.4em;margin-left:4px;color:#001C55;font-weight:600">New Project</p><br>
+            <p style="float:left;margin-top: 10px; font-size:1.0em;color:#001C55;font-weight:400">Coming soon. Working on more cool things to add. Reach out to me if you want to work on something together.</p><br>
+            <br>
+            <div style="float:right;position:absolute;bottom:10px;right:17px">
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div id="Experience" style="width:100%; text-align:center; float:left; padding-top:75px;">
+        <h1 style="font-size:2.3em; text-align: center">Experience</h1><br>
+        <div id="Nasdaq" style="max-width:1400px; z-index: 0; text-align:left; display: inline-block;position:relative; width:90%; margin-left:8px; margin-right:8px; margin-bottom: 30px; background-color:#51e29c;padding: 30px;">
+            <img src="https://findvectorlogo.com/wp-content/uploads/2019/03/deka-research-and-development-corp-vector-logo.png" width="50px" style="float:left; margin-top: 5px" />
+            <p style="width:70%; float:left;font-size:1.4em;color:#001C55;font-weight:600; padding-top:4px; margin-left:12px">Data Collection Specialist</p><br>
+            <p style="width:90%;float:left;margin-top: 15px; font-size:1.0em;color:#001C55;font-weight:600;">DEKA R&D Kiwi Project - Internship</p><br>
+            <p style="width:90%;float:left;margin-top: 10px; font-size:1.0em;color:#001C55;font-weight:600">May 2021 - Present </p><br>
+            <p style="min-width: 510px; width:90%;float:left;margin-top: 10px; font-size:1.0em;color:#001C55;font-weight:100">
+                Worked on a team to collect and curate data for machine learning.<br> Helped assemble testing machines to gather data and test hardware.<br> Used Python to automate tasks.</p><br>
+        </div>
+    </div>
 </body>
+
+<script>
+    let mainNav = document.getElementById("js-menu");
+    let navBarToggle = document.getElementById("js-navbar-toggle");
+
+    navBarToggle.addEventListener("click", function() {
+        mainNav.classList.toggle("active");
+    });
+</script>
+
+<script>
+    function shadow(id) {
+        let div = document.getElementById(id);
+        div.style.boxShadow = "0 4px 9px 0 rgba(0, 0, 0, 0.2)";
+    }
+
+    function unshadow(id) {
+        let div = document.getElementById(id);
+        div.style.boxShadow = "";
+    }
+
+    function expand(id) {
+        let div = document.getElementById("caret" + id);
+        let elements = document.getElementsByClassName("course" + id);
+        if (div.innerHTML === '<i class="fa fa-caret-down" aria-hidden="true"></i>') {
+            div.innerHTML = '<i class="fa fa-caret-up" aria-hidden="true"></i>';
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].style.display = "inline-block";
+            }
+        } else {
+            div.innerHTML = '<i class="fa fa-caret-down" aria-hidden="true"></i>';
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].style.display = "none";
+            }
+        }
+    }
+</script>
+<script>
+    let list = document.getElementsByClassName("modal")
+    for (let i = 0; i < list.length; i++) {
+        list[i].style.display = "none";
+    }
+
+    function modal(id) {
+        console.log(id);
+        var modal = document.getElementById(id);
+        console.log(modal);
+        // Get the button that opens the modal
+        var btn = document.getElementById(id + "Button");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementById(id + "Close");
+        console.log(span);
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks the button, open the modal 
+        modal.style.display = "block";
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
+</script>
+
+
 </html>
